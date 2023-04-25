@@ -53,7 +53,7 @@ const update = (amusementPark) => {
     /* eslint-disable-next-line eqeqeq */ // we really do want == here, not ===
     const index = amusementParks.findIndex((r) => r.id == amusementPark.id);
     if (index === -1) {
-        return { "error": `amusementPark with id ${restaurant.id} not found` };
+        return { "error": `amusementPark with id ${amusementPark.id} not found` };
     }
     amusementParks[index] = amusementPark;
     set(amusementParksCollection);
@@ -78,7 +78,7 @@ const del = (id) => {
     return { amusementParksCollection: amusementParksCollection };
 };
 
-const amusementParksUtils = {
+const amusementParkUtils = {
     get,
     getById,
     add,
@@ -86,4 +86,4 @@ const amusementParksUtils = {
     del
 };
 
-export { amusementParksUtils };
+export { amusementParkUtils };
