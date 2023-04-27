@@ -2,7 +2,7 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import AmusementParksTable from 'main/components/AmusementParks/AmusementParksTable';
-import { restaurantUtils } from 'main/utils/amusementParksUtils';
+import { amusementParksUtils } from 'main/utils/amusementParksUtils';
 import { useNavigate, Link } from 'react-router-dom';
 
 export default function AmusementParksIndexPage() {
