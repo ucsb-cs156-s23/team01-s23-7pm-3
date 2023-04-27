@@ -1,10 +1,10 @@
 import React from 'react';
-import amusementParksForm from "main/components/AmusementParks/amusementParksForm"
+import AmusementParksForm from "main/components/AmusementParks/amusementParksForm"
 import { amusementParksFixtures } from 'fixtures/amusementParksFixtures';
 
 export default {
     title: 'components/AmusementParks/amusementParksForm',
-    component: amusementParksForm
+    component: AmusementParksForm
 };
 
 const Template = (args) => {

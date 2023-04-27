@@ -3,7 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
 
-function amusementParksForm({ initialContents, submitAction, buttonLabel = "Create" }) {
+function AmusementParksForm({ initialContents, submitAction, buttonLabel = "Create" }) {
 
     const navigate = useNavigate();
     
@@ -58,12 +58,12 @@ function amusementParksForm({ initialContents, submitAction, buttonLabel = "Crea
             </Form.Group>
 
             <Form.Group className="mb-3" >
-                <Form.Label htmlFor="address">Name</Form.Label>
+                <Form.Label htmlFor="address">Address</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-address"}
                     id="address"
                     type="text"
-                    isInvalid={Boolean(errors.name)}
+                    isInvalid={Boolean(errors.address)}
                     {...register("address", {
                         required: "Address is required.",
                     })}
@@ -109,4 +109,4 @@ function amusementParksForm({ initialContents, submitAction, buttonLabel = "Crea
     )
 }
 
-export default amusementParksForm;
+export default AmusementParksForm;
