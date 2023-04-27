@@ -1,5 +1,5 @@
 import React from 'react';
-import IceCreamShopTable from 'main/components/iceCreamShops/IceCreamShopTable';
+import IceCreamShopTable from 'main/components/IceCreamShops/IceCreamShopTable';
 import { iceCreamShopFixtures } from 'fixtures/iceCreamShopFixtures';
 
 export default {
