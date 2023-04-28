@@ -15,7 +15,7 @@ jest.mock('react-router-dom', () => ({
 jest.mock('main/utils/amusementParksUtils', () => {
     return {
         __esModule: true,
-        amusementParksUtils: {
+        amusementParkUtils: {
             getById: (_id) => {
                 return {
                     amusementParks: {

@@ -1,12 +1,12 @@
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import { useParams } from "react-router-dom";
 import AmusementParksTable from 'main/components/AmusementParks/AmusementParksTable';
-import { amusementParksUtils } from 'main/utils/amusementParksUtils';
+import { amusementParkUtils } from 'main/utils/amusementParksUtils';
 
 export default function AmusementParksDetailsPage() {
   let { id } = useParams();
 
-  const response = amusementParksUtils.getById(id);
+  const response = amusementParkUtils.getById(id);
 
   return (
     <BasicLayout>

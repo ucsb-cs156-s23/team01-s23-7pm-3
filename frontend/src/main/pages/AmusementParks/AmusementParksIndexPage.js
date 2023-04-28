@@ -2,21 +2,21 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import AmusementParksTable from 'main/components/AmusementParks/AmusementParksTable';
-import { amusementParksUtils } from 'main/utils/amusementParksUtils';
+import { amusementParkUtils } from 'main/utils/amusementParksUtils';
 import { useNavigate, Link } from 'react-router-dom';
 
 export default function AmusementParksIndexPage() {
 
     const navigate = useNavigate();
 
-    const amusementParksCollection = amusementParksUtils.get();
+    const amusementParksCollection = amusementParkUtils.get();
     const amusementParks = amusementParksCollection.amusementParks;
 
     const showCell = (cell) => JSON.stringify(cell.row.values);
 
     const deleteCallback = async (cell) => {
         console.log(`AmusementParksIndexPage deleteCallback: ${showCell(cell)})`);
-        amusementParksUtils.del(cell.row.values.id);
+        amusementParkUtils.del(cell.row.values.id);
         navigate("/amusementParks");
     }
 

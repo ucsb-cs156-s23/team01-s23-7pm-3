@@ -14,7 +14,7 @@ const mockDelete = jest.fn();
 jest.mock('main/utils/amusementParksUtils', () => {
     return {
         __esModule: true,
-        amusementParksUtils: {
+        amusementParkUtils: {
             del: (id) => {
                 return mockDelete(id);
             },
