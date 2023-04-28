@@ -15,8 +15,8 @@ jest.mock('react-router-dom', () => ({
 describe("BookTable tests", () => {
   const queryClient = new QueryClient();
 
-  const expectedHeaders = ["id", "Title", "Description"];
-  const expectedFields = ["id", "title", "description"];
+  const expectedHeaders = ["id", "Title", "Author", "Description"];
+  const expectedFields = ["id", "title", "author", "description"];
   const testId = "BookTable";
 
   test("showCell function works properly", () => {
@@ -141,7 +141,7 @@ describe("BookTable tests", () => {
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
     const message = console.log.mock.calls[0][0];
-    const expectedMessage = `editCallback: {"id":2,"title":"The Amber Spyglass","description":"The third novel in the His Dark Materials trilogy"})`;
+    const expectedMessage = `editCallback: {"id":2,"title":"The Amber Spyglass","author":"Philip Pullman","description":"The third novel in the His Dark Materials trilogy"})`;
     expect(message).toMatch(expectedMessage);
     restoreConsole();
   });
@@ -175,7 +175,7 @@ describe("BookTable tests", () => {
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
     const message = console.log.mock.calls[0][0];
-    const expectedMessage = `detailsCallback: {"id":2,"title":"The Amber Spyglass","description":"The third novel in the His Dark Materials trilogy"})`;
+    const expectedMessage = `detailsCallback: {"id":2,"title":"The Amber Spyglass","author":"Philip Pullman","description":"The third novel in the His Dark Materials trilogy"})`;
     expect(message).toMatch(expectedMessage);
     restoreConsole();
   });
@@ -206,7 +206,7 @@ describe("BookTable tests", () => {
      // assert - check that the console.log was called with the expected message
      await(waitFor(() => expect(console.log).toHaveBeenCalled()));
      const message = console.log.mock.calls[0][0];
-     const expectedMessage = `deleteCallback: {"id":2,"title":"The Amber Spyglass","description":"The third novel in the His Dark Materials trilogy"})`;
+     const expectedMessage = `deleteCallback: {"id":2,"title":"The Amber Spyglass","author":"Philip Pullman","description":"The third novel in the His Dark Materials trilogy"})`;
      expect(message).toMatch(expectedMessage);
      restoreConsole();
   });

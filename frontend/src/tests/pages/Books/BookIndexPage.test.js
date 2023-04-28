@@ -62,8 +62,11 @@ describe("BookIndexPage tests", () => {
         expect(createBookButton).toBeInTheDocument();
         expect(createBookButton).toHaveAttribute("style", "float: right;");
 
-        const name = screen.getByText("Lord of the Flies");
-        expect(name).toBeInTheDocument();
+        const title = screen.getByText("Lord of the Flies");
+        expect(title).toBeInTheDocument();
+
+        const author = screen.getByText("William Golding");
+        expect(author).toBeInTheDocument();
 
         const description = screen.getByText("A story about children stranded on an island");
         expect(description).toBeInTheDocument();
@@ -85,8 +88,11 @@ describe("BookIndexPage tests", () => {
             </QueryClientProvider>
         );
 
-        const name = screen.getByText("Lord of the Flies");
-        expect(name).toBeInTheDocument();
+        const title = screen.getByText("Lord of the Flies");
+        expect(title).toBeInTheDocument();
+
+        const author = screen.getByText("William Golding");
+        expect(author).toBeInTheDocument();
 
         const description = screen.getByText("A story about children stranded on an island");
         expect(description).toBeInTheDocument();
@@ -105,7 +111,7 @@ describe("BookIndexPage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage = `BookIndexPage deleteCallback: {"id":3,"title":"Lord of the Flies","description":"A story about children stranded on an island"}`;
+        const expectedMessage = `BookIndexPage deleteCallback: {"id":3,"title":"Lord of the Flies","author":"William Golding","description":"A story about children stranded on an island"}`;
         expect(message).toMatch(expectedMessage);
         restoreConsole();
 
