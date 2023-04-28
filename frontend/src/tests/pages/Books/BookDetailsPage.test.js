@@ -21,6 +21,7 @@ jest.mock('main/utils/bookUtils', () => {
                     book: {
                         id: 3,
                         title: "Lord of the Flies",
+                        author: "William Golding",
                         description: "A story about children stranded on an island"
                     }
                 }
@@ -51,6 +52,7 @@ describe("BookDetailsPage tests", () => {
             </QueryClientProvider>
         );
         expect(screen.getByText("Lord of the Flies")).toBeInTheDocument();
+        expect(screen.getByText("William Golding")).toBeInTheDocument();
         expect(screen.getByText("A story about children stranded on an island")).toBeInTheDocument();
 
         expect(screen.queryByText("Delete")).not.toBeInTheDocument();
