@@ -11,7 +11,7 @@ const defaultDeleteCallback = async (cell) => {
     iceCreamShopUtils.del(cell.row.values.id);
 }
 
-export default function RestaurantTable({
+export default function IceCreamShopTable({
     iceCreamShops,
     deleteCallback = defaultDeleteCallback,
     showButtons = true,
@@ -42,6 +42,10 @@ export default function RestaurantTable({
         {
             Header: 'Description',
             accessor: 'description',
+        },
+        {
+            Header: 'Most Popular Flavor',
+            accessor: 'flavor',
         }
     ];
 

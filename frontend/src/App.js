@@ -15,6 +15,11 @@ import BookEditPage from "main/pages/Books/BookEditPage";
 import BookIndexPage from "main/pages/Books/BookIndexPage";
 import BookDetailsPage from "main/pages/Books/BookDetailsPage";
 
+import IceCreamShopCreatePage from "main/pages/IceCreamShops/IceCreamShopCreatePage";
+import IceCreamShopEditPage from "main/pages/IceCreamShops/IceCreamShopEditPage";
+import IceCreamShopIndexPage from "main/pages/IceCreamShops/IceCreamShopIndexPage";
+import IceCreamShopDetailsPage from "main/pages/IceCreamShops/IceCreamShopDetailsPage";
+
 function App() {
 
   const reload = () => window.location.reload();
@@ -38,6 +43,11 @@ function App() {
         <Route exact path="/books/edit/:id" element={<BookEditPage />} />
         <Route exact path="/books" element={<BookIndexPage />} />
         <Route exact path="/books/details/:id" element={<BookDetailsPage />} />
+
+        <Route exact path="/iceCreamShops/create" element={<IceCreamShopCreatePage />} />
+        <Route exact path="/iceCreamShops/edit/:id" element={<IceCreamShopEditPage />} />
+        <Route exact path="/iceCreamShops" element={<IceCreamShopIndexPage />} />
+        <Route exact path="/iceCreamShops/details/:id" element={<IceCreamShopDetailsPage />} />
       </Routes>
     </BrowserRouter>
   );
