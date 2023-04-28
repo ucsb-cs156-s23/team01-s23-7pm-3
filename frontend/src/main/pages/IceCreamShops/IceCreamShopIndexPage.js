@@ -24,9 +24,9 @@ export default function IceCreamShopIndexPage() {
         <BasicLayout>
             <div className="pt-2">
                 <Button style={{ float: "right" }} as={Link} to="/iceCreamShops/create">
-                    Create IceCreamShops
+                    Create Ice Cream Shop
                 </Button>
-                <h1>IceCreamShops</h1>
+                <h1>Ice Cream Shops</h1>
                 <IceCreamShopTable iceCreamShops={iceCreamShops} deleteCallback={deleteCallback} />
             </div>
         </BasicLayout>

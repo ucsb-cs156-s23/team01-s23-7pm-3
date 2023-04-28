@@ -22,7 +22,7 @@ export default function IceCreamShopEditPage() {
     return (
         <BasicLayout>
             <div className="pt-2">
-                <h1>Edit IceCreamShop</h1>
+                <h1>Edit Ice Cream Shop</h1>
                 <IceCreamShopForm submitAction={onSubmit} buttonLabel={"Update"} initialContents={response.iceCreamShop}/>
             </div>
         </BasicLayout>
