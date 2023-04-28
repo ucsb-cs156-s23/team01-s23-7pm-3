@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
-import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
+import BookCreatePage from "main/pages/Books/BookCreatePage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import mockConsole from "jest-mock-console";
@@ -11,51 +11,54 @@ jest.mock('react-router-dom', () => ({
 }));
 
 const mockAdd = jest.fn();
-jest.mock('main/utils/restaurantUtils', () => {
+jest.mock('main/utils/bookUtils', () => {
     return {
         __esModule: true,
-        restaurantUtils: {
+        bookUtils: {
             add: () => { return mockAdd(); }
         }
     }
 });
 
-describe("RestaurantCreatePage tests", () => {
+describe("BookCreatePage tests", () => {
 
     const queryClient = new QueryClient();
     test("renders without crashing", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <RestaurantCreatePage />
+                    <BookCreatePage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
     });
 
-    test("redirects to /restaurants on submit", async () => {
+    test("redirects to /books on submit", async () => {
 
         const restoreConsole = mockConsole();
 
         mockAdd.mockReturnValue({
-            "restaurant": {
+            "book": {
                 id: 3,
-                name: "South Coast Deli",
-                description: "Sandwiches and Salads"
+                title: "The Great Gatsby",
+                author: "F. Scott Fitzgerald",
+                description: "A story about a mysterious, rich man"
             }
         });
 
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <RestaurantCreatePage />
+                    <BookCreatePage />
                 </MemoryRouter>
             </QueryClientProvider>
         )
 
-        const nameInput = screen.getByLabelText("Name");
-        expect(nameInput).toBeInTheDocument();
+        const titleInput = screen.getByLabelText("Title");
+        expect(titleInput).toBeInTheDocument();
 
+        const authorInput = screen.getByLabelText("Author");
+        expect(authorInput).toBeInTheDocument();
 
         const descriptionInput = screen.getByLabelText("Description");
         expect(descriptionInput).toBeInTheDocument();
@@ -64,18 +67,21 @@ describe("RestaurantCreatePage tests", () => {
         expect(createButton).toBeInTheDocument();
 
         await act(async () => {
-            fireEvent.change(nameInput, { target: { value: 'South Coast Deli' } })
-            fireEvent.change(descriptionInput, { target: { value: 'Sandwiches and Salads' } })
+            fireEvent.change(titleInput, { target: { value: 'The Great Gatsby' } })
+            fireEvent.change(authorInput, { target: { value: 'F. Scott Fitzgerald' } })
+            fireEvent.change(descriptionInput, { target: { value: 'A story about a mysterious, rich man' } })
+
             fireEvent.click(createButton);
         });
 
         await waitFor(() => expect(mockAdd).toHaveBeenCalled());
-        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/restaurants"));
+        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/books"));
 
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage = `createdRestaurant: {"restaurant":{"id":3,"name":"South Coast Deli","description":"Sandwiches and Salads"}`
+        const expectedMessage = `createdBook: {"book":{"id":3,"title":"The Great Gatsby","author":"F. Scott Fitzgerald","description":"A story about a mysterious, rich man"}`
+
         expect(message).toMatch(expectedMessage);
         restoreConsole();
 

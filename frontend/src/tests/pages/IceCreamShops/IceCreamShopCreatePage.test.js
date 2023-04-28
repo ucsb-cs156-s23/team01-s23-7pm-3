@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
-import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
+import IceCreamShopCreatePage from "main/pages/IceCreamShops/IceCreamShopCreatePage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import mockConsole from "jest-mock-console";
@@ -11,44 +11,45 @@ jest.mock('react-router-dom', () => ({
 }));
 
 const mockAdd = jest.fn();
-jest.mock('main/utils/restaurantUtils', () => {
+jest.mock('main/utils/iceCreamShopUtils', () => {
     return {
         __esModule: true,
-        restaurantUtils: {
+        iceCreamShopUtils: {
             add: () => { return mockAdd(); }
         }
     }
 });
 
-describe("RestaurantCreatePage tests", () => {
+describe("IceCreamShopCreatePage tests", () => {
 
     const queryClient = new QueryClient();
     test("renders without crashing", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <RestaurantCreatePage />
+                    <IceCreamShopCreatePage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
     });
 
-    test("redirects to /restaurants on submit", async () => {
+    test("redirects to /iceCreamShops on submit", async () => {
 
         const restoreConsole = mockConsole();
 
         mockAdd.mockReturnValue({
-            "restaurant": {
+            "iceCreamShop": {
                 id: 3,
-                name: "South Coast Deli",
-                description: "Sandwiches and Salads"
+                name: "Baskin Robbins",
+                description: "A lot of ice cream",
+                flavor: "Vanilla"
             }
         });
 
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <RestaurantCreatePage />
+                    <IceCreamShopCreatePage />
                 </MemoryRouter>
             </QueryClientProvider>
         )
@@ -60,22 +61,28 @@ describe("RestaurantCreatePage tests", () => {
         const descriptionInput = screen.getByLabelText("Description");
         expect(descriptionInput).toBeInTheDocument();
 
+        const flavorInput = screen.getByLabelText("Most Popular Flavor");
+        expect(flavorInput).toBeInTheDocument();
+
         const createButton = screen.getByText("Create");
         expect(createButton).toBeInTheDocument();
 
         await act(async () => {
-            fireEvent.change(nameInput, { target: { value: 'South Coast Deli' } })
-            fireEvent.change(descriptionInput, { target: { value: 'Sandwiches and Salads' } })
+            fireEvent.change(nameInput, { target: { value: 'Baskin Robbins' } })
+            fireEvent.change(descriptionInput, { target: { value: 'A lot of ice cream' } })
+            fireEvent.change(flavorInput, { target: { value: 'Vanilla' } })
+
             fireEvent.click(createButton);
         });
 
         await waitFor(() => expect(mockAdd).toHaveBeenCalled());
-        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/restaurants"));
+        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/iceCreamShops"));
 
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage = `createdRestaurant: {"restaurant":{"id":3,"name":"South Coast Deli","description":"Sandwiches and Salads"}`
+        const expectedMessage =  `createdIceCreamShop: {"iceCreamShop":{"id":3,"name":"Baskin Robbins","description":"A lot of ice cream","flavor":"Vanilla"}`
+
         expect(message).toMatch(expectedMessage);
         restoreConsole();
 
