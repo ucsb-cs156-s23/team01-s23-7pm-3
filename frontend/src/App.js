@@ -10,6 +10,11 @@ import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantDetailsPage from "main/pages/Restaurants/RestaurantDetailsPage";
 
+import IceCreamShopCreatePage from "main/pages/IceCreamShops/IceCreamShopCreatePage";
+import IceCreamShopsEditPage from "main/pages/IceCreamShops/IceCreamShopEditPage";
+import IceCreamShopsIndexPage from "main/pages/IceCreamShops/IceCreamShopIndexPage";
+import IceCreamShopsDetailsPage from "main/pages/IceCreamShops/IceCreamShopDetailsPage";
+
 
 function App() {
 
@@ -29,6 +34,11 @@ function App() {
         <Route exact path="/restaurants/edit/:id" element={<RestaurantEditPage />} />
         <Route exact path="/restaurants/details/:id" element={<RestaurantDetailsPage />} />
         <Route exact path="/restaurants/" element={<RestaurantIndexPage />} />
+
+        <Route exact path="/iceCreamShops/create" element={<IceCreamShopCreatePage />} />
+        <Route exact path="/iceCreamShops/edit/:id" element={<IceCreamShopsEditPage />} />
+        <Route exact path="/iceCreamShops/details/:id" element={<IceCreamShopsDetailsPage />} />
+        <Route exact path="/iceCreamShops/" element={<IceCreamShopsIndexPage />} />
 
       </Routes>
     </BrowserRouter>

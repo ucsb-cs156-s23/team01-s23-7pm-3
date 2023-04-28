@@ -11,7 +11,7 @@ export default function IceCreamShopDetailsPage() {
   return (
     <BasicLayout>
       <div className="pt-2">
-        <h1>IceCreamShop Details</h1>
+        <h1>Ice Cream Shop Details</h1>
         <IceCreamShopTable iceCreamShops={[response.iceCreamShop]} showButtons={false} />
       </div>
     </BasicLayout>
