@@ -40,6 +40,10 @@ export default function AmusementParksTable({
             accessor: 'name',
         },
         {
+            Header: 'Address',
+            accessor: 'address',
+        },
+        {
             Header: 'Description',
             accessor: 'description',
         }

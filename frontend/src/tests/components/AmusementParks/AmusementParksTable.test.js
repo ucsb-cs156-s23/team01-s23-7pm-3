@@ -15,8 +15,8 @@ jest.mock('react-router-dom', () => ({
 describe("AmusementParksTable tests", () => {
   const queryClient = new QueryClient();
 
-  const expectedHeaders = ["id", "Name", "Description"];
-  const expectedFields = ["id", "name", "description"];
+  const expectedHeaders = ["id", "Name", "Address", "Description"];
+  const expectedFields = ["id", "name", "address", "description"];
   const testId = "AmusementParksTable";
 
   test("showCell function works properly", () => {
@@ -141,7 +141,7 @@ describe("AmusementParksTable tests", () => {
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
     const message = console.log.mock.calls[0][0];
-    const expectedMessage = `editCallback: {"id":2,"name":"Six Flags Magic Mountain","description":"This park is known for its large roller coasters"})`;
+    const expectedMessage = `editCallback: {"id":2,"name":"Six Flags Magic Mountain","address":"26101 Magic Mountain Pkwy","description":"This park is known for its large roller coasters"})`;
     expect(message).toMatch(expectedMessage);
     restoreConsole();
   });
@@ -175,7 +175,7 @@ describe("AmusementParksTable tests", () => {
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
     const message = console.log.mock.calls[0][0];
-    const expectedMessage = `detailsCallback: {"id":2,"name":"Six Flags Magic Mountain","description":"This park is known for its large roller coasters"})`;
+    const expectedMessage = `detailsCallback: {"id":2,"name":"Six Flags Magic Mountain","address":"26101 Magic Mountain Pkwy","description":"This park is known for its large roller coasters"})`;
     expect(message).toMatch(expectedMessage);
     restoreConsole();
   });
@@ -206,7 +206,7 @@ describe("AmusementParksTable tests", () => {
      // assert - check that the console.log was called with the expected message
      await(waitFor(() => expect(console.log).toHaveBeenCalled()));
      const message = console.log.mock.calls[0][0];
-     const expectedMessage = `deleteCallback: {"id":2,"name":"Six Flags Magic Mountain","description":"This park is known for its large roller coasters"})`;
+     const expectedMessage = `deleteCallback: {"id":2,"name":"Six Flags Magic Mountain","address":"26101 Magic Mountain Pkwy","description":"This park is known for its large roller coasters"})`;
      expect(message).toMatch(expectedMessage);
      restoreConsole();
   });
