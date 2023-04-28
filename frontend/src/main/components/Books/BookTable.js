@@ -34,10 +34,13 @@ export default function BookTable({
             Header: 'id',
             accessor: 'id', // accessor is the "key" in the data
         },
-
         {
             Header: 'Title',
             accessor: 'title',
+        },
+        {
+            Header: 'Author',
+            accessor: 'author',
         },
         {
             Header: 'Description',
