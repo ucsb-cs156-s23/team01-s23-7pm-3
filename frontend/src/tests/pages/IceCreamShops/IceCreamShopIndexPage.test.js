@@ -61,7 +61,7 @@ describe("IceCreamShopIndexPage tests", () => {
             </QueryClientProvider>
         );
 
-        const createIceCreamShopButton = screen.getByText("Create IceCreamShops");
+        const createIceCreamShopButton = screen.getByText("Create Ice Cream Shop");
         expect(createIceCreamShopButton).toBeInTheDocument();
         expect(createIceCreamShopButton).toHaveAttribute("style", "float: right;");
 
