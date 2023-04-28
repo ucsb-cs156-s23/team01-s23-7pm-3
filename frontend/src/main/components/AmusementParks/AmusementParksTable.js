@@ -1,14 +1,14 @@
 import React from "react";
 import OurTable, { ButtonColumn } from "main/components/OurTable";
 import { useNavigate } from "react-router-dom";
-import { amusementParksUtils } from "main/utils/amusementParksUtils";
+import { amusementParkUtils } from "main/utils/amusementParksUtils";
 
 const showCell = (cell) => JSON.stringify(cell.row.values);
 
 
 const defaultDeleteCallback = async (cell) => {
     console.log(`deleteCallback: ${showCell(cell)})`);
-    amusementParksUtils.del(cell.row.values.id);
+    amusementParkUtils.del(cell.row.values.id);
 }
 
 export default function AmusementParksTable({
