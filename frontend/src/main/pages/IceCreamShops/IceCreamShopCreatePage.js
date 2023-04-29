@@ -16,7 +16,7 @@ export default function IceCreamShopCreatePage() {
   return (
     <BasicLayout>
       <div className="pt-2">
-        <h1>Create New IceCreamShop</h1>
+        <h1>Create New Ice Cream Shop</h1>
         <IceCreamShopForm submitAction={onSubmit} />
       </div>
     </BasicLayout>
