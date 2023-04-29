@@ -18,7 +18,7 @@ jest.mock('main/utils/amusementParksUtils', () => {
         amusementParkUtils: {
             getById: (_id) => {
                 return {
-                    amusementParks: {
+                    amusementPark: {
                         id: 3,
                         name: "Disneyland Park",
                         address: "1313 Disneyland Dr",

@@ -12,7 +12,7 @@ export default function AmusementParksDetailsPage() {
     <BasicLayout>
       <div className="pt-2">
         <h1>Amusement Park Details</h1>
-        <AmusementParksTable amusementParks={[response.amusementParks]} showButtons={false} />
+        <AmusementParksTable amusementParks={[response.amusementPark]} showButtons={false} />
       </div>
     </BasicLayout>
   )
