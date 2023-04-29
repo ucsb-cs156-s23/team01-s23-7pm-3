@@ -10,6 +10,11 @@ import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantDetailsPage from "main/pages/Restaurants/RestaurantDetailsPage";
 
+import AmusementParksCreatePage from "main/pages/AmusementParks/AmusementParkCreatePage";
+import AmusementParksEditPage from "main/pages/AmusementParks/AmusementParkEditPage";
+import AmusementParksIndexPage from "main/pages/AmusementParks/AmusementParksIndexPage";
+import AmusementParksDetailsPage from "main/pages/AmusementParks/AmusementParksDetailsPage";
+
 import BookCreatePage from "main/pages/Books/BookCreatePage";
 import BookEditPage from "main/pages/Books/BookEditPage";
 import BookIndexPage from "main/pages/Books/BookIndexPage";
@@ -48,6 +53,11 @@ function App() {
         <Route exact path="/iceCreamShops/edit/:id" element={<IceCreamShopEditPage />} />
         <Route exact path="/iceCreamShops" element={<IceCreamShopIndexPage />} />
         <Route exact path="/iceCreamShops/details/:id" element={<IceCreamShopDetailsPage />} />
+
+        <Route exact path="/amusementParks/create" element={<AmusementParksCreatePage />} />
+        <Route exact path="/amusementParks/edit/:id" element={<AmusementParksEditPage />} />
+        <Route exact path="/amusementParks/details/:id" element={<AmusementParksDetailsPage />} />
+        <Route exact path="/amusementParks/" element={<AmusementParksIndexPage />} />
       </Routes>
     </BrowserRouter>
   );
