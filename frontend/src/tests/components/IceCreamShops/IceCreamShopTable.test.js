@@ -62,9 +62,18 @@ describe("IceCreamShopTable tests", () => {
 
     expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("Rori’s Artisanal Creamery");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-description`)).toHaveTextContent("This is a tasty ice cream shop with special flavors in SB public market.");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-flavor`)).toHaveTextContent("mint");
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-name`)).toHaveTextContent("i.v. drip");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-description`)).toHaveTextContent("Quaint, compact cafe serving locally roasted coffee alongside housemade baked treats & ice cream.");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-flavor`)).toHaveTextContent("strawberry");
+
+    expect(screen.getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent("4");
+    expect(screen.getByTestId(`${testId}-cell-row-2-col-name`)).toHaveTextContent("Cold Stone Creamery");
+    expect(screen.getByTestId(`${testId}-cell-row-2-col-description`)).toHaveTextContent("Ice cream chain offering design-your-own creations hand-mixed on a granite slab, plus shakes & more.");
+    expect(screen.getByTestId(`${testId}-cell-row-2-col-flavor`)).toHaveTextContent("vanilla");
 
     const detailsButton = screen.getByTestId(`${testId}-cell-row-0-col-Details-button`);
     expect(detailsButton).toBeInTheDocument();
@@ -102,9 +111,18 @@ describe("IceCreamShopTable tests", () => {
 
     expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("Rori’s Artisanal Creamery");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-description`)).toHaveTextContent("This is a tasty ice cream shop with special flavors in SB public market.");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-flavor`)).toHaveTextContent("mint");
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-name`)).toHaveTextContent("i.v. drip");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-description`)).toHaveTextContent("Quaint, compact cafe serving locally roasted coffee alongside housemade baked treats & ice cream.");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-flavor`)).toHaveTextContent("strawberry");
+
+    expect(screen.getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent("4");
+    expect(screen.getByTestId(`${testId}-cell-row-2-col-name`)).toHaveTextContent("Cold Stone Creamery");
+    expect(screen.getByTestId(`${testId}-cell-row-2-col-description`)).toHaveTextContent("Ice cream chain offering design-your-own creations hand-mixed on a granite slab, plus shakes & more.");
+    expect(screen.getByTestId(`${testId}-cell-row-2-col-flavor`)).toHaveTextContent("vanilla");
 
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
     expect(screen.queryByText("Edit")).not.toBeInTheDocument();
@@ -141,7 +159,7 @@ describe("IceCreamShopTable tests", () => {
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
     const message = console.log.mock.calls[0][0];
-    const expectedMessage = `editCallback: {"id":2,"name":"Rori’s Artisanal Creamery","description":"This is a tasty ice cream shop with special flavors in SB public market"})`;
+    const expectedMessage = `editCallback: {"id":2,"name":"Rori’s Artisanal Creamery","description":"This is a tasty ice cream shop with special flavors in SB public market.","flavor":"mint"})`;
     expect(message).toMatch(expectedMessage);
     restoreConsole();
   });
@@ -162,6 +180,8 @@ describe("IceCreamShopTable tests", () => {
     // assert - check that the expected content is rendered
     expect(await screen.findByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("Rori’s Artisanal Creamery");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-description`)).toHaveTextContent("This is a tasty ice cream shop with special flavors in SB public market.");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-flavor`)).toHaveTextContent("mint");
 
     const detailsButton = screen.getByTestId(`${testId}-cell-row-0-col-Details-button`);
     expect(detailsButton).toBeInTheDocument();
@@ -175,7 +195,7 @@ describe("IceCreamShopTable tests", () => {
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
     const message = console.log.mock.calls[0][0];
-    const expectedMessage = `detailsCallback: {"id":2,"name":"Rori’s Artisanal Creamery","description":"This is a tasty ice cream shop with special flavors in SB public market"})`;
+    const expectedMessage = `detailsCallback: {"id":2,"name":"Rori’s Artisanal Creamery","description":"This is a tasty ice cream shop with special flavors in SB public market.","flavor":"mint"})`;
     expect(message).toMatch(expectedMessage);
     restoreConsole();
   });
@@ -206,7 +226,7 @@ describe("IceCreamShopTable tests", () => {
      // assert - check that the console.log was called with the expected message
      await(waitFor(() => expect(console.log).toHaveBeenCalled()));
      const message = console.log.mock.calls[0][0];
-     const expectedMessage = `deleteCallback: {"id":2,"name":"Rori’s Artisanal Creamery","description":"This is a tasty ice cream shop with special flavors in SB public market"})`;
+     const expectedMessage = `deleteCallback: {"id":2,"name":"Rori’s Artisanal Creamery","description":"This is a tasty ice cream shop with special flavors in SB public market.","flavor":"mint"})`;
      expect(message).toMatch(expectedMessage);
      restoreConsole();
   });

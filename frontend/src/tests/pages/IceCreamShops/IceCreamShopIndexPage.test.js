@@ -25,11 +25,8 @@ jest.mock('main/utils/iceCreamShopUtils', () => {
                         {
                             "id": 3,
                             "name": "i.v. drip",
-                            "address": "905 Embarcadero del Norte",
-                            "city": "Isla Vista",
-                            "state": "CA",
-                            "zip": "93117",
-                            "description": "Quaint, compact cafe serving locally roasted coffee alongside housemade baked treats & ice cream."
+                            "description": "Quaint, compact cafe serving locally roasted coffee alongside housemade baked treats & ice cream.",
+                            "flavor": "strawberry"
                         },
                     ]
                 }
@@ -71,6 +68,9 @@ describe("IceCreamShopIndexPage tests", () => {
         const description = screen.getByText("Quaint, compact cafe serving locally roasted coffee alongside housemade baked treats & ice cream.");
         expect(description).toBeInTheDocument();
 
+        const flavor = screen.getByText("strawberry");
+        expect(flavor).toBeInTheDocument();
+
         expect(screen.getByTestId("IceCreamShopTable-cell-row-0-col-Delete-button")).toBeInTheDocument();
         expect(screen.getByTestId("IceCreamShopTable-cell-row-0-col-Details-button")).toBeInTheDocument();
         expect(screen.getByTestId("IceCreamShopTable-cell-row-0-col-Edit-button")).toBeInTheDocument();
@@ -94,6 +94,9 @@ describe("IceCreamShopIndexPage tests", () => {
         const description = screen.getByText("Quaint, compact cafe serving locally roasted coffee alongside housemade baked treats & ice cream.");
         expect(description).toBeInTheDocument();
 
+        const flavor = screen.getByText("strawberry");
+        expect(flavor).toBeInTheDocument();
+
         const deleteButton = screen.getByTestId("IceCreamShopTable-cell-row-0-col-Delete-button");
         expect(deleteButton).toBeInTheDocument();
 
@@ -108,7 +111,7 @@ describe("IceCreamShopIndexPage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage = `IceCreamShopIndexPage deleteCallback: {"id":3,"name":"i.v. drip","description":"Quaint, compact cafe serving locally roasted coffee alongside housemade baked treats & ice cream."}`;
+        const expectedMessage = `IceCreamShopIndexPage deleteCallback: {"id":3,"name":"i.v. drip","description":"Quaint, compact cafe serving locally roasted coffee alongside housemade baked treats & ice cream.","flavor":"strawberry"}`;
         expect(message).toMatch(expectedMessage);
         restoreConsole();
 
