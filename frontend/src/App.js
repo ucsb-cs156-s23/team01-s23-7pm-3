@@ -10,6 +10,11 @@ import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantDetailsPage from "main/pages/Restaurants/RestaurantDetailsPage";
 
+import AmusementParksCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
+import AmusementParksEditPage from "main/pages/Restaurants/RestaurantEditPage";
+import AmusementParksIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
+import AmusementParksDetailsPage from "main/pages/Restaurants/RestaurantDetailsPage";
+
 
 function App() {
 

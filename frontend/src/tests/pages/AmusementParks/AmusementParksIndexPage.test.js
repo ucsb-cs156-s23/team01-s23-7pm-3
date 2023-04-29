@@ -65,6 +65,9 @@ describe("AmusementParksIndexPage tests", () => {
         const name = screen.getByText("Disneyland Park");
         expect(name).toBeInTheDocument();
 
+        const address = screen.getByText("1313 Disneyland Dr");
+        expect(address).toBeInTheDocument();
+
         const description = screen.getByText("Disney-themed amusement park rides");
         expect(description).toBeInTheDocument();
 
@@ -87,6 +90,9 @@ describe("AmusementParksIndexPage tests", () => {
 
         const name = screen.getByText("Disneyland Park");
         expect(name).toBeInTheDocument();
+
+        const address = screen.getByText("1313 Disneyland Dr");
+        expect(address).toBeInTheDocument();
 
         const description = screen.getByText("Disney-themed amusement park rides");
         expect(description).toBeInTheDocument();

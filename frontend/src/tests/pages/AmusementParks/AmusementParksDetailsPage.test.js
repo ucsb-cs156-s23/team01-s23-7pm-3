@@ -21,6 +21,7 @@ jest.mock('main/utils/amusementParksUtils', () => {
                     amusementParks: {
                         id: 3,
                         name: "Disneyland Park",
+                        address: "1313 Disneyland Dr",
                         description: "Disney-themed amusement park rides"
                     }
                 }
@@ -51,6 +52,7 @@ describe("AmusementParksDetailsPage tests", () => {
             </QueryClientProvider>
         );
         expect(screen.getByText("Disneyland Park")).toBeInTheDocument();
+        expect(screen.getByText("1313 Disneyland Dr")).toBeInTheDocument();
         expect(screen.getByText("Disney-themed amusement park rides")).toBeInTheDocument();
 
         expect(screen.queryByText("Delete")).not.toBeInTheDocument();
