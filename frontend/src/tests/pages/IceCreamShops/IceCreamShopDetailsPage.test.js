@@ -22,6 +22,7 @@ jest.mock('main/utils/iceCreamShopUtils', () => {
                         id: 3,
                         name: "i.v. drip",
                         description: "Quaint, compact cafe serving locally roasted coffee alongside housemade baked treats & ice cream.",
+                        flavor: "strawberry"
                     }
                 }
             }
@@ -52,6 +53,7 @@ describe("IceCreamShopDetailsPage tests", () => {
         );
         expect(screen.getByText("i.v. drip")).toBeInTheDocument();
         expect(screen.getByText("Quaint, compact cafe serving locally roasted coffee alongside housemade baked treats & ice cream.")).toBeInTheDocument();
+        expect(screen.getByText("strawberry")).toBeInTheDocument();
 
         expect(screen.queryByText("Delete")).not.toBeInTheDocument();
         expect(screen.queryByText("Edit")).not.toBeInTheDocument();
