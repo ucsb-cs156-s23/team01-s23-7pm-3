@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import AmusementParksIndexPage from "main/pages/AmusementParks/AmusementParksIndexPage";
+import IceCreamShopIndexPage from "main/pages/IceCreamShops/IceCreamShopIndexPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import mockConsole from "jest-mock-console";
@@ -11,22 +11,22 @@ jest.mock('react-router-dom', () => ({
 }));
 
 const mockDelete = jest.fn();
-jest.mock('main/utils/amusementParksUtils', () => {
+jest.mock('main/utils/iceCreamShopUtils', () => {
     return {
         __esModule: true,
-        amusementParkUtils: {
+        iceCreamShopUtils: {
             del: (id) => {
                 return mockDelete(id);
             },
             get: () => {
                 return {
                     nextId: 5,
-                    amusementParks: [
+                    iceCreamShops: [
                         {
                             "id": 3,
-                            "name": "Disneyland Park",
-                            "address": "1313 Disneyland Dr",
-                            "description": "Disney-themed amusement park rides"
+                            "name": "i.v. drip",
+                            "description": "Quaint, compact cafe serving locally roasted coffee alongside housemade baked treats & ice cream.",
+                            "flavor": "strawberry"
                         },
                     ]
                 }
@@ -36,14 +36,14 @@ jest.mock('main/utils/amusementParksUtils', () => {
 });
 
 
-describe("AmusementParksIndexPage tests", () => {
+describe("IceCreamShopIndexPage tests", () => {
 
     const queryClient = new QueryClient();
     test("renders without crashing", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <AmusementParksIndexPage />
+                    <IceCreamShopIndexPage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
@@ -53,27 +53,27 @@ describe("AmusementParksIndexPage tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <AmusementParksIndexPage />
+                    <IceCreamShopIndexPage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
 
-        const createAmusementParksButton = screen.getByText("Create Amusement Park");
-        expect(createAmusementParksButton).toBeInTheDocument();
-        expect(createAmusementParksButton).toHaveAttribute("style", "float: right;");
+        const createIceCreamShopButton = screen.getByText("Create Ice Cream Shop");
+        expect(createIceCreamShopButton).toBeInTheDocument();
+        expect(createIceCreamShopButton).toHaveAttribute("style", "float: right;");
 
-        const name = screen.getByText("Disneyland Park");
+        const name = screen.getByText("i.v. drip");
         expect(name).toBeInTheDocument();
 
-        const address = screen.getByText("1313 Disneyland Dr");
-        expect(address).toBeInTheDocument();
-
-        const description = screen.getByText("Disney-themed amusement park rides");
+        const description = screen.getByText("Quaint, compact cafe serving locally roasted coffee alongside housemade baked treats & ice cream.");
         expect(description).toBeInTheDocument();
 
-        expect(screen.getByTestId("AmusementParksTable-cell-row-0-col-Delete-button")).toBeInTheDocument();
-        expect(screen.getByTestId("AmusementParksTable-cell-row-0-col-Details-button")).toBeInTheDocument();
-        expect(screen.getByTestId("AmusementParksTable-cell-row-0-col-Edit-button")).toBeInTheDocument();
+        const flavor = screen.getByText("strawberry");
+        expect(flavor).toBeInTheDocument();
+
+        expect(screen.getByTestId("IceCreamShopTable-cell-row-0-col-Delete-button")).toBeInTheDocument();
+        expect(screen.getByTestId("IceCreamShopTable-cell-row-0-col-Details-button")).toBeInTheDocument();
+        expect(screen.getByTestId("IceCreamShopTable-cell-row-0-col-Edit-button")).toBeInTheDocument();
     });
 
     test("delete button calls delete and reloads page", async () => {
@@ -83,21 +83,21 @@ describe("AmusementParksIndexPage tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <AmusementParksIndexPage />
+                    <IceCreamShopIndexPage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
 
-        const name = screen.getByText("Disneyland Park");
+        const name = screen.getByText("i.v. drip");
         expect(name).toBeInTheDocument();
 
-        const address = screen.getByText("1313 Disneyland Dr");
-        expect(address).toBeInTheDocument();
-
-        const description = screen.getByText("Disney-themed amusement park rides");
+        const description = screen.getByText("Quaint, compact cafe serving locally roasted coffee alongside housemade baked treats & ice cream.");
         expect(description).toBeInTheDocument();
 
-        const deleteButton = screen.getByTestId("AmusementParksTable-cell-row-0-col-Delete-button");
+        const flavor = screen.getByText("strawberry");
+        expect(flavor).toBeInTheDocument();
+
+        const deleteButton = screen.getByTestId("IceCreamShopTable-cell-row-0-col-Delete-button");
         expect(deleteButton).toBeInTheDocument();
 
         deleteButton.click();
@@ -105,18 +105,19 @@ describe("AmusementParksIndexPage tests", () => {
         expect(mockDelete).toHaveBeenCalledTimes(1);
         expect(mockDelete).toHaveBeenCalledWith(3);
 
-        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/amusementParks"));
+        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/iceCreamShops"));
 
 
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage = `AmusementParksIndexPage deleteCallback: {"id":3,"name":"Disneyland Park","address":"1313 Disneyland Dr","description":"Disney-themed amusement park rides"}`;
+        const expectedMessage = `IceCreamShopIndexPage deleteCallback: {"id":3,"name":"i.v. drip","description":"Quaint, compact cafe serving locally roasted coffee alongside housemade baked treats & ice cream.","flavor":"strawberry"}`;
         expect(message).toMatch(expectedMessage);
         restoreConsole();
 
     });
 
 });
+
 
 

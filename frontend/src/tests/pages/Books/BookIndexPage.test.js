@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import AmusementParksIndexPage from "main/pages/AmusementParks/AmusementParksIndexPage";
+import BookIndexPage from "main/pages/Books/BookIndexPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import mockConsole from "jest-mock-console";
@@ -11,22 +11,22 @@ jest.mock('react-router-dom', () => ({
 }));
 
 const mockDelete = jest.fn();
-jest.mock('main/utils/amusementParksUtils', () => {
+jest.mock('main/utils/bookUtils', () => {
     return {
         __esModule: true,
-        amusementParkUtils: {
+        bookUtils: {
             del: (id) => {
                 return mockDelete(id);
             },
             get: () => {
                 return {
                     nextId: 5,
-                    amusementParks: [
+                    books: [
                         {
                             "id": 3,
-                            "name": "Disneyland Park",
-                            "address": "1313 Disneyland Dr",
-                            "description": "Disney-themed amusement park rides"
+                            "title": "Lord of the Flies",
+                            "author": "William Golding",
+                            "description": "A story about children stranded on an island" 
                         },
                     ]
                 }
@@ -36,14 +36,14 @@ jest.mock('main/utils/amusementParksUtils', () => {
 });
 
 
-describe("AmusementParksIndexPage tests", () => {
+describe("BookIndexPage tests", () => {
 
     const queryClient = new QueryClient();
     test("renders without crashing", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <AmusementParksIndexPage />
+                    <BookIndexPage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
@@ -53,27 +53,27 @@ describe("AmusementParksIndexPage tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <AmusementParksIndexPage />
+                    <BookIndexPage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
 
-        const createAmusementParksButton = screen.getByText("Create Amusement Park");
-        expect(createAmusementParksButton).toBeInTheDocument();
-        expect(createAmusementParksButton).toHaveAttribute("style", "float: right;");
+        const createBookButton = screen.getByText("Create Book");
+        expect(createBookButton).toBeInTheDocument();
+        expect(createBookButton).toHaveAttribute("style", "float: right;");
 
-        const name = screen.getByText("Disneyland Park");
-        expect(name).toBeInTheDocument();
+        const title = screen.getByText("Lord of the Flies");
+        expect(title).toBeInTheDocument();
 
-        const address = screen.getByText("1313 Disneyland Dr");
-        expect(address).toBeInTheDocument();
+        const author = screen.getByText("William Golding");
+        expect(author).toBeInTheDocument();
 
-        const description = screen.getByText("Disney-themed amusement park rides");
+        const description = screen.getByText("A story about children stranded on an island");
         expect(description).toBeInTheDocument();
 
-        expect(screen.getByTestId("AmusementParksTable-cell-row-0-col-Delete-button")).toBeInTheDocument();
-        expect(screen.getByTestId("AmusementParksTable-cell-row-0-col-Details-button")).toBeInTheDocument();
-        expect(screen.getByTestId("AmusementParksTable-cell-row-0-col-Edit-button")).toBeInTheDocument();
+        expect(screen.getByTestId("BookTable-cell-row-0-col-Delete-button")).toBeInTheDocument();
+        expect(screen.getByTestId("BookTable-cell-row-0-col-Details-button")).toBeInTheDocument();
+        expect(screen.getByTestId("BookTable-cell-row-0-col-Edit-button")).toBeInTheDocument();
     });
 
     test("delete button calls delete and reloads page", async () => {
@@ -83,21 +83,21 @@ describe("AmusementParksIndexPage tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <AmusementParksIndexPage />
+                    <BookIndexPage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
 
-        const name = screen.getByText("Disneyland Park");
-        expect(name).toBeInTheDocument();
+        const title = screen.getByText("Lord of the Flies");
+        expect(title).toBeInTheDocument();
 
-        const address = screen.getByText("1313 Disneyland Dr");
-        expect(address).toBeInTheDocument();
+        const author = screen.getByText("William Golding");
+        expect(author).toBeInTheDocument();
 
-        const description = screen.getByText("Disney-themed amusement park rides");
+        const description = screen.getByText("A story about children stranded on an island");
         expect(description).toBeInTheDocument();
 
-        const deleteButton = screen.getByTestId("AmusementParksTable-cell-row-0-col-Delete-button");
+        const deleteButton = screen.getByTestId("BookTable-cell-row-0-col-Delete-button");
         expect(deleteButton).toBeInTheDocument();
 
         deleteButton.click();
@@ -105,13 +105,13 @@ describe("AmusementParksIndexPage tests", () => {
         expect(mockDelete).toHaveBeenCalledTimes(1);
         expect(mockDelete).toHaveBeenCalledWith(3);
 
-        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/amusementParks"));
+        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/books"));
 
 
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage = `AmusementParksIndexPage deleteCallback: {"id":3,"name":"Disneyland Park","address":"1313 Disneyland Dr","description":"Disney-themed amusement park rides"}`;
+        const expectedMessage = `BookIndexPage deleteCallback: {"id":3,"title":"Lord of the Flies","author":"William Golding","description":"A story about children stranded on an island"}`;
         expect(message).toMatch(expectedMessage);
         restoreConsole();
 
