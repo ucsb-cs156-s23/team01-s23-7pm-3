@@ -9,7 +9,7 @@ export default {
 
 const Template = (args) => {
     return (
-        <amusementParksForm {...args} />
+        <AmusementParksForm {...args} />
     )
 };
 
@@ -23,7 +23,7 @@ Default.args = {
 export const Show = Template.bind({});
 
 Show.args = {
-    amusemenPark: amusementParksFixtures.oneAmusementPark,
+    AmusementPark: amusementParksFixtures.oneAmusementPark,
     submitText: "",
     submitAction: () => { }
 };
